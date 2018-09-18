@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Поменять местами первую и вторую половину массива</title>
+	<script>
+	 
+	function main(){
+		var str = document.getElementById("1").value;
+		var arr = [];
+		var arr2 = [];
+		var arr3 = [];
+		//разбитие на символы
+		for (var i = 0; i < str.length; i++) {
+		arr.push(str.slice(i, i+1));
+		}	
+		alert("Разбитие на символы: "+arr);
+		//получение длины и разбитие на 2 составные
+		var set=(arr.length)/2;
+		alert("Set: "+set);
+		for (var j = 0; j < set; j++) {
+		arr2[j]=arr[j];
+		}	
+		alert("Mass2: "+arr2);
+		var s=Number(s);
+		s=0;
+		for (var q = set; q < set*2; q++) {
+			arr3[s]=arr[q];
+			s++;
+		}	
+		alert("Mass3: "+arr3);
+		//получение полного массива
+		s=0;
+		for(var t=0;t<arr.length; t++){
+			if(t<set)
+			arr[t]=arr3[t];	
+			else{
+			arr[t]=arr2[s];
+			s++;
+			}
+		}
+		alert("All mass: "+arr);		
+	}
+	</script>
+</head>
+<body>
+	<form>
+		<p><b>Inpu mass:</b><br>
+		<input type="text" size="40" id="1">
+		<input type="submit" value="Стартуем) " onclick="main()">
+		
+	</form>
+</body>
+</html>

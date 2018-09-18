@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Посчитать количество нечетных элементов массива</title>
+	<script>
+	 
+	function main(){
+		var str = document.getElementById("1").value;
+		var arr = [];
+		var sum=Number(sum);
+		var ints;
+		//разбитие на символы
+		for (var i = 0; i < str.length; i++) {
+		arr.push(str.slice(i, i+1));
+		}	
+		alert("Разбитие на символы: "+arr);
+		sum=0;
+		//преобразования символов в числа и получение его обратную сторону
+		for(var i=0;i<arr.length; i++)
+				if(arr[i] % 2 == 0){
+					ints=Number(arr[i]);
+					sum=sum+ints;
+					}
+		alert("Sum: "+sum);		
+	}
+	</script>
+</head>
+<body>
+	<form>
+		<p><b>Inpu mass:</b><br>
+		<input type="text" size="40" id="1">
+		<input type="submit" value="Стартуем) " onclick="main()">
+		
+	</form>
+</body>
+</html>

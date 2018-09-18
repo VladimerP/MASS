@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Отсортировать массив (Quick, Merge, Shell, Heap)</title>
+	<script>
+	 
+	function main(){
+		var str = document.getElementById("1").value;
+		var arr = [];
+		var arr2 = [];
+		var arr3 = [];
+		var arr4 = [];
+		//разбитие на символы
+		for (var i = 0; i < str.length; i++) {
+		arr.push(str.slice(i, i+1));
+		arr2.push(str.slice(i, i+1));
+		arr3.push(str.slice(i, i+1));
+		arr4.push(str.slice(i, i+1));
+		}	
+		alert("Разбитие на символы: "+arr);
+		//сортировка Quik
+		arr=Quick(arr);
+		alert("Mass1(Quik): "+arr);
+		//сортировка Heap
+		arr2=Heap(arr2);
+		alert("Mass2(Heap): "+arr2);
+		//сортировка Shell
+		arr3=Shell(arr3);
+		alert("Mass3(Shell): "+arr3);
+		//сортировка Marge
+		arr4=MergeSort(arr4);
+		alert("Mass4(Marge): "+arr4);
+	}
+	
+	function Quick(A){
+	if (A.length == 0) return [];
+    var a = [], b = [], p = A[0];
+    for (var i = 1; i < A.length; i++)
+     { if (A[ i ] < p) a[a.length] = A[ i ];
+       else b[b.length] = A[ i ];
+     }
+    return Quick(a).concat( p,Quick(b) );
+	}
+	
+	
+	
+	function Heap(A){
+		if (A.length == 0) return [];
+		var n = A.length, i = Math.floor(n/2), j, k, t;
+		while (true)
+		{ if (i > 0) t = A[--i];
+		else { n--;
+            if (n == 0) return A;
+            t = A[n];  A[n] = A[0];
+           }        
+		  j = i;  k = j*2+1;
+		  while (k < n){ 
+		  if (k+1 < n && A[k+1] > A[k]) k++;
+          if (A[k] > t)
+          { A[j] = A[k];  j = k;  k = j*2+1; }
+         else break;
+       }
+      A[j] = t; 
+    }
+	}
+	
+	function Shell(A)
+{
+    var n = A.length, i = Math.floor(n/2);
+    while (i > 0)
+     { for (var j = 0; j < n; j++)
+        { var k = j, t = A[j];
+          while (k >= i && A[k-i] > t)
+           { A[k] = A[k-i]; k -= i; }
+          A[k] = t;
+        }
+      i = (i==2) ? 1 : Math.floor(i*5/11);
+     }
+    return A;
+}
+
+function Merge(a,low,mid,high)    //Вспомогательная функция.
+{
+    var b = new Array(high+1-low), h, i, j = mid+1, k, h = low, i = 0;
+    while (h <= mid && j <= high )
+     { if (a[h] <= a[j]){ b[ i ]=a[h]; h++; }
+       else             { b[ i ]=a[j]; j++; }
+       i++;
+     }
+    if (h > mid){ for (k = j; k <= high; k++){ b[ i ]=a[k]; i++; } }
+    else        { for (k = h; k <= mid; k++){  b[ i ]=a[k]; i++; } }    
+    for (k=0; k<=high-low; k++) a[k+low]=b[k];
+    return a;
+}
+
+function MergeSort(A)      //Функция сортировки слиянияем.
+{
+    function merge_sort(a,low,high)
+     { if (low < high)
+        { var mid = Math.floor((low+high)/2);
+          merge_sort(a, low, mid);
+          merge_sort(a, mid+1, high);
+          Merge(a, low, mid, high);
+        }
+     }
+    var n = A.length;
+    merge_sort(A, 0, n-1);
+    return A;
+}
+
+	</script>
+</head>
+<body>
+	<form>
+		<p><b>Inpu mass:</b><br>
+		<input type="text" size="40" id="1">
+		<input type="submit" value="Стартуем) " onclick="main()">
+		
+	</form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Отсортировать массив (пузырьком (Bubble), выбором (Select), вставками (Insert)) </title>
+	<script>
+	 
+	function main(){
+		var str = document.getElementById("1").value;
+		var arr = [];
+		var arr2 = [];
+		var arr3 = [];
+		//разбитие на символы
+		for (var i = 0; i < str.length; i++) {
+		arr.push(str.slice(i, i+1));
+		arr2.push(str.slice(i, i+1));
+		arr3.push(str.slice(i, i+1));
+		}	
+		alert("Разбитие на символы: "+arr);
+		//сортировка пузырьком
+		for (var i = 0, endI = arr.length - 1; i < endI; i++) {
+			for (var j = 0, endJ = endI - i; j < endJ; j++) {
+				if (arr[j] > arr[j + 1]) {
+					var swap = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = swap;
+				}
+			}
+		}
+		alert("Mass1(пузырек): "+arr);
+		//сортировка выбором
+		 var n = arr2.length;
+		for (var i = 0; i < n-1; i++){ 
+			var min = i;
+			for (var j = i+1; j < n; j++){ 
+				if (arr2[j] < arr2[min]) min = j; 
+			} 
+			var t = arr2[min]; 
+			arr2[min] = arr2[ i ]; 
+			arr2[ i ] = t;
+		 }      
+		alert("Mass2(выбором): "+arr2);		
+		//сортировка вставкой
+		var n = arr3.length;
+		for (var i = 0; i < n; i++){ 
+			var v = arr3[ i ], j = i-1;
+			while (j >= 0 && arr3[j] > v){ 
+				arr3[j+1] = arr3[j]; j--; 
+			}
+			arr3[j+1] = v;
+		} 
+		alert("Mass3(вставка): "+arr3);
+	}
+	</script>
+</head>
+<body>
+	<form>
+		<p><b>Inpu mass:</b><br>
+		<input type="text" size="40" id="1">
+		<input type="submit" value="Стартуем) " onclick="main()">
+		
+	</form>
+</body>
+</html>
